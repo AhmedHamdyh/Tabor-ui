@@ -45,17 +45,23 @@ class layoutScreen extends StatelessWidget {
                   padding: EdgeInsets.all(8),
                   tabs: [
                     GButton(
-                      icon: Iconsax.home_25,
+                      icon: cubit.curentIndex == 0
+                          ? Iconsax.home_25
+                          : Iconsax.home_24,
                       iconColor: Color(0xff161616),
                       text: 'الرئيسية',
                     ),
                     GButton(
-                      icon: Iconsax.ticket5,
+                      icon: cubit.curentIndex == 1
+                          ? Iconsax.ticket5
+                          : Iconsax.ticket4,
                       iconColor: Color(0xff161616),
                       text: 'التذاكر',
                     ),
                     GButton(
-                      icon: Iconsax.heart5,
+                      icon: cubit.curentIndex == 2
+                          ? Iconsax.heart5
+                          : Iconsax.heart4,
                       iconColor: Color(0xff161616),
                       text: 'المفضلة',
                     ),

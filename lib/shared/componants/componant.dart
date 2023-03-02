@@ -100,8 +100,8 @@ void NavigateAndFinsh(context, widget) => Navigator.pushAndRemoveUntil(
 
 Widget DefoltSvgImage(
         {required String image,
-        required double width,
-        required double hight,
+        double? width,
+        double? hight,
         bool Drawing = true}) =>
     SvgPicture.asset(
       image,
@@ -130,4 +130,44 @@ Widget DefoltIcon(
             icon,
             color: Color.fromARGB(255, 10, 90, 12),
           )),
+    );
+
+Widget DefoltHorisentalCompanyform({
+  required String image,
+  double? width,
+  double? hight,
+}) =>
+    Padding(
+      padding: const EdgeInsets.only(
+        right: 16,
+        top: 16,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          InkWell(
+            onTap: () {},
+            child: Container(
+              width: width,
+              height: hight,
+              decoration: BoxDecoration(
+                color: Color(0xffffffff),
+                borderRadius: BorderRadius.circular(16),
+                boxShadow: [BoxShadow(color: Color(0xff40000000))],
+              ),
+              child: DefoltSvgImage(
+                image: image,
+              ),
+            ),
+          ),
+          Text("خدمة عملاء اتصالات",
+              style: const TextStyle(
+                  color: const Color(0xff161616),
+                  fontWeight: FontWeight.w400,
+                  fontFamily: "ReadexPro",
+                  fontStyle: FontStyle.normal,
+                  fontSize: 14),
+              textAlign: TextAlign.right)
+        ],
+      ),
     );

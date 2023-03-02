@@ -12,7 +12,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHight = MediaQuery.of(context).size.height;
+    double fontsize = 0.036 * screenWidth;
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Container(
           height: screenHight * 0.17,
@@ -29,10 +31,11 @@ class HomeScreen extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                DefoltSvgImage(
-                    image: 'assets/images/Tabor_logo.svg',
-                    width: screenWidth * 0.14,
-                    hight: screenWidth * 0.14),
+                Image.asset(
+                  'assets/images/user.jpg',
+                  width: screenWidth * 0.14,
+                  height: screenWidth * 0.14,
+                ),
                 SizedBox(
                   width: 1,
                 ),
@@ -44,7 +47,7 @@ class HomeScreen extends StatelessWidget {
                         style: const TextStyle(
                             color: const Color(0xff161616),
                             fontWeight: FontWeight.w500,
-                            fontFamily: "ReadexPro",
+                            fontFamily: 'ReadexPro',
                             fontStyle: FontStyle.normal,
                             fontSize: 16.0),
                         textAlign: TextAlign.right),
@@ -52,56 +55,84 @@ class HomeScreen extends StatelessWidget {
                         style: const TextStyle(
                             color: const Color(0xff161616),
                             fontWeight: FontWeight.w300,
-                            fontFamily: "ReadexPro",
+                            fontFamily: 'ReadexPro',
                             fontStyle: FontStyle.normal,
-                            fontSize: 14.0),
+                            fontSize: 14),
                         textAlign: TextAlign.right)
                   ],
                 ),
                 SizedBox(
-                  width: screenWidth * 0.15,
+                  width: screenWidth * 0.13,
                 ),
                 DefoltIcon(
                     width: screenWidth * 0.1,
                     hight: screenWidth * 0.1,
-                    icon: Icons.search_sharp),
+                    icon: Iconsax.search_normal_14),
                 SizedBox(
-                  width: screenWidth * 0.04,
+                  width: screenWidth * 0.02,
                 ),
                 DefoltIcon(
                     width: screenWidth * 0.1,
                     hight: screenWidth * 0.1,
-                    icon: Icons.location_on)
+                    icon: Iconsax.location5)
               ],
             ),
           ),
         ),
-        Column(
-          children: [
-            Container(
-              height: 400,
-              width: 300,
-              color: Color(0xffffffff),
-              child: Padding(
-                padding: const EdgeInsets.only(bottom: 30),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Container(
-                      width: 20,
-                      height: 30,
-                      decoration: BoxDecoration(
-                          color: Color(0xfff5f5f5),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(50),
-                              bottomLeft: Radius.circular(50))),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
+        SizedBox(
+          height: screenHight * 0.23,
         ),
+        Padding(
+          padding: const EdgeInsets.only(right: 16),
+          child: Opacity(
+            opacity: 0.699999988079071,
+            child: Text("الاكثر انتشاراً",
+                style: const TextStyle(
+                    color: const Color(0xff161616),
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "ReadexPro",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 21.0),
+                textAlign: TextAlign.right),
+          ),
+        ),
+        Container(
+          height: (screenHight * 0.11) + 42,
+          child: ListView.separated(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return DefoltHorisentalCompanyform(
+                image: 'assets/images/etisalat_horizental.svg',
+                width: 155,
+                hight: screenHight * 0.11,
+              );
+            },
+            separatorBuilder: (context, index) => SizedBox(
+              width: 0,
+            ),
+            itemCount: 7,
+          ),
+        ),
+        SizedBox(
+          height: screenHight * 0.047,
+        ),
+        Padding(
+          padding: const EdgeInsets.only(
+            right: 16,
+          ),
+          child: Opacity(
+            opacity: 0.699999988079071,
+            child: Text("مراكز الخدمة",
+                style: const TextStyle(
+                    color: const Color(0xff161616),
+                    fontWeight: FontWeight.w500,
+                    fontFamily: "ReadexPro",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 21.0),
+                textAlign: TextAlign.right),
+          ),
+        )
       ],
     );
   }

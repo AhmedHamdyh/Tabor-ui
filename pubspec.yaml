@@ -67,12 +67,13 @@ flutter:
     - assets/images/
     
   fonts:
-    - family: ReadexPro
+    - family: ReadexPro   
+      fonts:
+        - asset: assets/fonts/ReadexPro-VariableFont_wght.ttf       
     - family: iconsax
       fonts:
-        - asset: assets/fonts/ReadexPro-VariableFont_wght.ttf
-        - asset: assets/fonts/iconsax.ttf 
-        
+        - asset: assets/fonts/iconsax.ttf  
+          
   # fonts:
   #   - family: iconsax
   #     fonts:
