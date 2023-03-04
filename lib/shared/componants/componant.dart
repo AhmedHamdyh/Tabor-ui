@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tabor/shared/componants/iconsax_icons.dart';
 
 Widget DefoltButon({
   double width = double.infinity,
@@ -153,12 +154,17 @@ Widget DefoltHorisentalCompanyform({
               decoration: BoxDecoration(
                 color: Color(0xffffffff),
                 borderRadius: BorderRadius.circular(16),
-                boxShadow: [BoxShadow(color: Color(0xff40000000))],
+                boxShadow: [
+                  BoxShadow(blurRadius: 4, color: Color(0xff40000000))
+                ],
               ),
               child: DefoltSvgImage(
                 image: image,
               ),
             ),
+          ),
+          SizedBox(
+            height: 8,
           ),
           Text("خدمة عملاء اتصالات",
               style: const TextStyle(
@@ -169,5 +175,120 @@ Widget DefoltHorisentalCompanyform({
                   fontSize: 14),
               textAlign: TextAlign.right)
         ],
+      ),
+    );
+
+Widget VerticalCompanyForm({
+  String image = 'assets/images/Googel.svg',
+  double? distance,
+  required Color iconColor,
+}) =>
+    Padding(
+      padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
+      child: InkWell(
+        onTap: () {},
+        child: Container(
+          width: double.infinity,
+          height: 80,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            color: Colors.white,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    color: Color(0xffffffff),
+                    boxShadow: [
+                      BoxShadow(blurRadius: 4, color: Color(0xff40000000))
+                    ]),
+                child: DefoltSvgImage(image: image, width: 48, hight: 48),
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("خدمة عملاء فودافون",
+                      style: const TextStyle(
+                          color: const Color(0xff161616),
+                          fontWeight: FontWeight.w500,
+                          fontFamily: "ReadexPro",
+                          fontStyle: FontStyle.normal,
+                          fontSize: 16.0),
+                      textAlign: TextAlign.right),
+                  Text('15' + ' ' + 'فرع',
+                      style: const TextStyle(
+                          color: const Color(0xff161616),
+                          fontWeight: FontWeight.w400,
+                          fontFamily: "ReadexPro",
+                          fontStyle: FontStyle.normal,
+                          fontSize: 14.0),
+                      textAlign: TextAlign.right)
+                ],
+              ),
+              SizedBox(
+                width: distance,
+              ),
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Iconsax.heart5,
+                    color: iconColor,
+                    size: 32,
+                  ))
+            ],
+          ),
+        ),
+      ),
+    );
+Widget CustomAppBar(
+        {required double screenHight,
+        required double screenWidth,
+        required String text}) =>
+    Container(
+      height: screenHight * 0.17,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Color(0xffffffff),
+        boxShadow: [BoxShadow(color: Color(0xff40000000))],
+        borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(16), bottomLeft: Radius.circular(16)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Text(text,
+                style: const TextStyle(
+                    color: const Color(0xff161616),
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "ReadexPro",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 21.0),
+                textAlign: TextAlign.right),
+            SizedBox(
+              width: screenWidth * 0.45,
+            ),
+            DefoltIcon(
+                width: screenWidth * 0.1,
+                hight: screenWidth * 0.1,
+                icon: Iconsax.search_normal_14),
+            SizedBox(
+              width: screenWidth * 0.02,
+            ),
+            DefoltIcon(
+                width: screenWidth * 0.1,
+                hight: screenWidth * 0.1,
+                icon: Iconsax.location5)
+          ],
+        ),
       ),
     );

@@ -39,6 +39,7 @@ dependencies:
   google_nav_bar: 
   flutter_bloc:
   smooth_page_indicator:
+  dotted_line:
 
 dev_dependencies:
   flutter_test:
