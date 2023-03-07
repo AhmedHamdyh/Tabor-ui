@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:tabor/modules/branshes/branshes.dart';
+import 'package:tabor/modules/service/service.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
 Widget DefoltButon({
@@ -133,11 +135,11 @@ Widget DefoltIcon(
           )),
     );
 
-Widget DefoltHorisentalCompanyform({
-  required String image,
-  double? width,
-  double? hight,
-}) =>
+Widget DefoltHorisentalCompanyform(
+        {required String image,
+        double? width,
+        double? hight,
+        required BuildContext context}) =>
     Padding(
       padding: const EdgeInsets.only(
         right: 16,
@@ -147,7 +149,9 @@ Widget DefoltHorisentalCompanyform({
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              NavigateTo(context, BranshesScreen());
+            },
             child: Container(
               width: width,
               height: hight,
@@ -158,8 +162,11 @@ Widget DefoltHorisentalCompanyform({
                   BoxShadow(blurRadius: 4, color: Color(0xff40000000))
                 ],
               ),
-              child: DefoltSvgImage(
-                image: image,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: DefoltSvgImage(
+                  image: image,
+                ),
               ),
             ),
           ),
@@ -178,15 +185,20 @@ Widget DefoltHorisentalCompanyform({
       ),
     );
 
-Widget VerticalCompanyForm({
-  String image = 'assets/images/Googel.svg',
-  double? distance,
-  required Color iconColor,
-}) =>
+Widget VerticalCompanyForm(
+        {required String image,
+        required String name,
+        required int nomberOfBranshes,
+        required double screenWidth,
+        required Color iconColor,
+        double Iconopacity = 0.0,
+        required BuildContext context}) =>
     Padding(
       padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          NavigateTo(context, BranshesScreen());
+        },
         child: Container(
           width: double.infinity,
           height: 80,
@@ -206,7 +218,12 @@ Widget VerticalCompanyForm({
                     boxShadow: [
                       BoxShadow(blurRadius: 4, color: Color(0xff40000000))
                     ]),
-                child: DefoltSvgImage(image: image, width: 48, hight: 48),
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: DefoltSvgImage(
+                    image: image,
+                  ),
+                ),
               ),
               SizedBox(
                 width: 8,
@@ -215,7 +232,7 @@ Widget VerticalCompanyForm({
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("خدمة عملاء فودافون",
+                  Text(name,
                       style: const TextStyle(
                           color: const Color(0xff161616),
                           fontWeight: FontWeight.w500,
@@ -223,7 +240,7 @@ Widget VerticalCompanyForm({
                           fontStyle: FontStyle.normal,
                           fontSize: 16.0),
                       textAlign: TextAlign.right),
-                  Text('15' + ' ' + 'فرع',
+                  Text("$nomberOfBranshes" + ' ' + 'فرع',
                       style: const TextStyle(
                           color: const Color(0xff161616),
                           fontWeight: FontWeight.w400,
@@ -234,20 +251,24 @@ Widget VerticalCompanyForm({
                 ],
               ),
               SizedBox(
-                width: distance,
+                width: screenWidth * 0.12,
               ),
               IconButton(
                   onPressed: () {},
-                  icon: Icon(
-                    Iconsax.heart5,
-                    color: iconColor,
-                    size: 32,
+                  icon: Opacity(
+                    opacity: Iconopacity,
+                    child: Icon(
+                      Iconsax.heart5,
+                      color: iconColor,
+                      size: 32,
+                    ),
                   ))
             ],
           ),
         ),
       ),
     );
+
 Widget CustomAppBar(
         {required double screenHight,
         required double screenWidth,
@@ -289,6 +310,137 @@ Widget CustomAppBar(
                 hight: screenWidth * 0.1,
                 icon: Iconsax.location5)
           ],
+        ),
+      ),
+    );
+
+Widget AppBar2(
+        {required double screenHight,
+        required double screenWidth,
+        required String text,
+        required BuildContext context}) =>
+    Container(
+      height: screenHight * 0.17,
+      width: double.infinity,
+      decoration: BoxDecoration(
+        color: Color(0xffffffff),
+        boxShadow: [BoxShadow(blurRadius: 4, color: Color(0xff40000000))],
+        borderRadius: BorderRadius.only(
+            bottomRight: Radius.circular(16), bottomLeft: Radius.circular(16)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.only(right: 16, left: 16, bottom: 16),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            DefoltIcon(
+                width: screenWidth * 0.1,
+                hight: screenWidth * 0.1,
+                icon: Iconsax.location5),
+            SizedBox(
+              width: screenWidth * 0.02,
+            ),
+            DefoltIcon(
+                width: screenWidth * 0.1,
+                hight: screenWidth * 0.1,
+                icon: Iconsax.search_normal_14),
+            SizedBox(
+              width: screenWidth * 0.42,
+            ),
+            Text(text,
+                style: const TextStyle(
+                    color: Color(0xff009c7b),
+                    fontWeight: FontWeight.w600,
+                    fontFamily: "ReadexPro",
+                    fontStyle: FontStyle.normal,
+                    fontSize: 21.0),
+                textAlign: TextAlign.right),
+            SizedBox(
+              width: 4,
+            ),
+            InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: DefoltSvgImage(
+                  image: 'assets/images/vuesax_bulk_arrow_square_right.svg'),
+            )
+          ],
+        ),
+      ),
+    );
+
+Widget BranshesCard({
+  required double screenWidth,
+  required BuildContext context,
+  required String image,
+  required String name,
+  required double destance,
+}) =>
+    Center(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16),
+        child: InkWell(
+          onTap: () {
+            NavigateTo(context, Service_screen());
+          },
+          child: Container(
+            width: screenWidth - 32,
+            height: 81,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(Radius.circular(16)),
+              color: Color(0xffffffff),
+              boxShadow: [BoxShadow(color: Color(0xff40000000), blurRadius: 4)],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  DefoltSvgImage(image: image),
+                  SizedBox(
+                    width: screenWidth * 0.34,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(name,
+                          style: const TextStyle(
+                              color: const Color(0xff161616),
+                              fontWeight: FontWeight.w500,
+                              fontFamily: "ReadexPro",
+                              fontStyle: FontStyle.normal,
+                              fontSize: 16.0),
+                          textAlign: TextAlign.right),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: [
+                          Text("كم",
+                              style: const TextStyle(
+                                  color: const Color(0xff161616),
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "ReadexPro",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 14.0),
+                              textAlign: TextAlign.right),
+                          Text(" " + "$destance",
+                              style: const TextStyle(
+                                  color: const Color(0xff161616),
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "ReadexPro",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 14.0),
+                              textAlign: TextAlign.right),
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
       ),
     );

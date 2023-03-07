@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:tabor/modules/on_bording/on_bording.dart';
+import 'package:tabor/modules/tecktRelode/tecktRelode.dart';
 import 'package:tabor/shared/componants/componant.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
@@ -47,7 +48,7 @@ class TecketScrren extends StatelessWidget {
                   BoxShadow(
                       color: const Color(0x40000000),
                       offset: Offset(0, 0),
-                      //  blurRadius: 4,
+                      blurRadius: 4,
                       spreadRadius: 0)
                 ],
                 color: const Color(0xffffffff)),
@@ -236,6 +237,13 @@ class TecketScrren extends StatelessWidget {
                       width: 25,
                       height: 35,
                       decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: const Color(0x40000000),
+                                offset: Offset(0, 0),
+                                blurRadius: 4,
+                                spreadRadius: 0)
+                          ],
                           color: Color(0xfff5f5f5),
                           borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(50),
@@ -263,6 +271,13 @@ class TecketScrren extends StatelessWidget {
                       width: 25,
                       height: 35,
                       decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: const Color(0x40000000),
+                                offset: Offset(0, 0),
+                                blurRadius: 4,
+                                spreadRadius: 0)
+                          ],
                           color: Color(0xfff5f5f5),
                           borderRadius: BorderRadius.only(
                               topRight: Radius.circular(50),
@@ -308,105 +323,112 @@ class TecketScrren extends StatelessWidget {
           ),
         ),
         Center(
-          child: Container(
-            width: screenWidth - 48,
-            height: 88,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                boxShadow: [
-                  BoxShadow(
-                      color: const Color(0x40000000),
-                      offset: Offset(0, 0),
-                      spreadRadius: 0)
-                ],
-                color: const Color(0xffffffff)),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                right: 10,
-              ),
-              child: Row(children: [
-                Center(
-                    child: DefoltSvgImage(image: 'assets/images/Googel.svg')),
-                SizedBox(
-                  width: 8,
+          child: InkWell(
+            onTap: () {
+              NavigateTo(context, tecketReloudeScreen());
+            },
+            child: Container(
+              width: screenWidth - 48,
+              height: 88,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  boxShadow: [
+                    BoxShadow(
+                        color: const Color(0x40000000),
+                        offset: Offset(0, 0),
+                        spreadRadius: 0)
+                  ],
+                  color: const Color(0xffffffff)),
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  right: 10,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("البنك الاهلى المصرى",
-                          style: const TextStyle(
-                              color: const Color(0xff161616),
-                              fontWeight: FontWeight.w500,
-                              fontFamily: "ReadexPro",
-                              fontStyle: FontStyle.normal,
-                              fontSize: 14.0),
-                          textAlign: TextAlign.right),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8, bottom: 8),
-                        child: Text("الفيوم - فرع الجامعة",
+                child: Row(children: [
+                  Center(
+                      child: DefoltSvgImage(image: 'assets/images/Googel.svg')),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("البنك الاهلى المصرى",
                             style: const TextStyle(
                                 color: const Color(0xff161616),
                                 fontWeight: FontWeight.w500,
                                 fontFamily: "ReadexPro",
                                 fontStyle: FontStyle.normal,
-                                fontSize: 12.0),
+                                fontSize: 14.0),
                             textAlign: TextAlign.right),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 8, bottom: 8),
+                          child: Text("الفيوم - فرع الجامعة",
+                              style: const TextStyle(
+                                  color: const Color(0xff161616),
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: "ReadexPro",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 12.0),
+                              textAlign: TextAlign.right),
+                        ),
+                        Opacity(
+                          opacity: 0.5,
+                          child: Text("طابور خدمة العملاء",
+                              style: const TextStyle(
+                                  color: const Color(0xff161616),
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "ReadexPro",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 12.0),
+                              textAlign: TextAlign.right),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: 50,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Container(
+                        width: 30,
+                        height: 20,
+                        decoration: BoxDecoration(
+                            color: Color(0xfff5f5f5),
+                            borderRadius: BorderRadius.only(
+                                bottomLeft: Radius.circular(50),
+                                bottomRight: Radius.circular(50))),
                       ),
-                      Opacity(
-                        opacity: 0.5,
-                        child: Text("طابور خدمة العملاء",
-                            style: const TextStyle(
-                                color: const Color(0xff161616),
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "ReadexPro",
-                                fontStyle: FontStyle.normal,
-                                fontSize: 12.0),
-                            textAlign: TextAlign.right),
+                      SizedBox(
+                        height: 48,
+                      ),
+                      Container(
+                        width: 30,
+                        height: 20,
+                        decoration: BoxDecoration(
+                            color: Color(0xfff5f5f5),
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(50),
+                                topRight: Radius.circular(50))),
                       ),
                     ],
                   ),
-                ),
-                SizedBox(
-                  width: 50,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Container(
-                      width: 30,
-                      height: 20,
-                      decoration: BoxDecoration(
-                          color: Color(0xfff5f5f5),
-                          borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(50),
-                              bottomRight: Radius.circular(50))),
-                    ),
-                    SizedBox(
-                      height: 48,
-                    ),
-                    Container(
-                      width: 30,
-                      height: 20,
-                      decoration: BoxDecoration(
-                          color: Color(0xfff5f5f5),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(50),
-                              topRight: Radius.circular(50))),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Iconsax.repeat5,
-                      size: 32,
-                    ))
-              ]),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        NavigateTo(context, tecketReloudeScreen());
+                      },
+                      icon: Icon(
+                        Iconsax.repeat5,
+                        size: 32,
+                      ))
+                ]),
+              ),
             ),
           ),
         )
