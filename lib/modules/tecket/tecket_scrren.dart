@@ -48,7 +48,6 @@ class TecketScrren extends StatelessWidget {
                   BoxShadow(
                       color: const Color(0x40000000),
                       offset: Offset(0, 0),
-                      blurRadius: 4,
                       spreadRadius: 0)
                 ],
                 color: const Color(0xffffffff)),

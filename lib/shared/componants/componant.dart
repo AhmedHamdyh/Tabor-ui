@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tabor/modules/branshes/branshes.dart';
+import 'package:tabor/modules/queue/queue.dart';
 import 'package:tabor/modules/service/service.dart';
 import 'package:tabor/shared/componants/iconsax_icons.dart';
 
@@ -441,6 +442,127 @@ Widget BranshesCard({
               ),
             ),
           ),
+        ),
+      ),
+    );
+
+Widget SirviceForm({
+  required double screenWidth,
+  required BuildContext context,
+  required String Service,
+}) =>
+    Padding(
+      padding: const EdgeInsets.only(top: 16.0),
+      child: Container(
+        width: screenWidth - 32,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Color(0xffffffff),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Opacity(
+              opacity: 0.7,
+              child: Radio(
+                value: 0,
+                groupValue: 1,
+                onChanged: (value) {},
+              ),
+            ),
+            Expanded(
+              child: Text(Service,
+                  style: const TextStyle(
+                      color: const Color(0xff161616),
+                      fontWeight: FontWeight.w500,
+                      fontFamily: "ReadexPro",
+                      fontStyle: FontStyle.normal,
+                      fontSize: 16.0),
+                  textAlign: TextAlign.right),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: InkWell(
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Opacity(
+                            opacity: 0.699999988079071,
+                            child: Text("الاوراق المطلوبة",
+                                style: const TextStyle(
+                                    color: const Color(0xff161616),
+                                    fontWeight: FontWeight.w500,
+                                    fontFamily: "ReadexPro",
+                                    fontStyle: FontStyle.normal,
+                                    fontSize: 21.0),
+                                textAlign: TextAlign.right),
+                          ),
+                          content: Text(
+                            'صورة البطاقة',
+                            textAlign: TextAlign.right,
+                          ),
+                        );
+                      });
+                },
+                child: DefoltSvgImage(
+                    image: 'assets/images/vuesax_bulk_info_circle.svg'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+
+Widget TransportForm(
+        {required double screenWidth,
+        required BuildContext context,
+        required String TransportTool,
+        required double time}) =>
+    Padding(
+      padding: const EdgeInsets.only(top: 16.0),
+      child: Container(
+        width: screenWidth - 32,
+        height: 40,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: Color(0xffffffff),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Opacity(
+              opacity: 0.7,
+              child: Radio(
+                value: 0,
+                groupValue: 1,
+                onChanged: (value) {},
+              ),
+            ),
+            Expanded(
+              child: Text(TransportTool,
+                  style: const TextStyle(
+                      color: const Color(0xff161616),
+                      fontWeight: FontWeight.w500,
+                      fontFamily: "ReadexPro",
+                      fontStyle: FontStyle.normal,
+                      fontSize: 16.0),
+                  textAlign: TextAlign.right),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Text("$time" + " " + "دقيقة",
+                  style: const TextStyle(
+                      color: const Color(0xff161616),
+                      fontWeight: FontWeight.w400,
+                      fontFamily: "ReadexPro",
+                      fontStyle: FontStyle.normal,
+                      fontSize: 14.0),
+                  textAlign: TextAlign.right),
+            ),
+          ],
         ),
       ),
     );
