@@ -15,14 +15,17 @@ class onBoardingScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xfff5f5f5),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           SizedBox(
             height: 48,
           ),
           InkWell(
             onTap: () {
-              NavigateTo(context, layoutScreen());
+              NavigateTo(
+                  context,
+                  Directionality(
+                      textDirection: TextDirection.rtl, child: layoutScreen()));
             },
             child: Padding(
               padding: const EdgeInsets.only(right: 16),
@@ -105,7 +108,7 @@ class DefoltButon extends StatelessWidget {
       height: 48,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       onPressed: () {
-        NavigateTo(context, sinUpScreen());
+        NavigateTo(context, SignUpScreen());
       },
       child: Text("انشاء حساب",
           style: const TextStyle(

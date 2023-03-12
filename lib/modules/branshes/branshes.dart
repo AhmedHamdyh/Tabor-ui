@@ -22,6 +22,12 @@ class BranshesScreen extends StatelessWidget {
               context: context),
           SizedBox(
             height: 192,
+            child: Image.network(
+              'https://www.bankygate.com/UserFiles/News/2021/04/05/19740.jpg?210405152916',
+              width: screenWidth,
+              height: 192,
+              fit: BoxFit.cover,
+            ),
           ),
           Expanded(
             child: Container(

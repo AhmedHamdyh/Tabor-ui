@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       ),
       debugShowCheckedModeBanner: false,
       home: Directionality(
-          textDirection: TextDirection.rtl, child: layoutScreen()),
+          textDirection: TextDirection.rtl, child: onBoardingScreen()),
     );
   }
 }

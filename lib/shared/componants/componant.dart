@@ -61,6 +61,8 @@ Widget DefoltFormFilde({
   VoidCallback? SuffixPresd,
 }) =>
     TextFormField(
+      textAlign: TextAlign.right,
+      textDirection: TextDirection.rtl,
       controller: controller,
       keyboardType: type,
       onFieldSubmitted: (value) {
@@ -384,7 +386,7 @@ Widget BranshesCard({
         padding: const EdgeInsets.only(top: 16),
         child: InkWell(
           onTap: () {
-            NavigateTo(context, Service_screen());
+            NavigateTo(context, QueuesScreen());
           },
           child: Container(
             width: screenWidth - 32,
@@ -563,6 +565,193 @@ Widget TransportForm(
                   textAlign: TextAlign.right),
             ),
           ],
+        ),
+      ),
+    );
+
+Widget text(
+        {required String text,
+        double fsize = 14,
+        FontWeight fweight = FontWeight.w400,
+        Color? fcolor = const Color(0xff161616),
+        String ffamily = "ReadexPro",
+        FontStyle fstyle = FontStyle.normal,
+        TextAlign talign = TextAlign.start}) =>
+    Text(
+      text,
+      style: TextStyle(
+        color: fcolor,
+        fontSize: fsize,
+        fontWeight: fweight,
+        fontFamily: ffamily,
+        fontStyle: fstyle,
+      ),
+      textAlign: talign,
+    );
+
+Widget serviceContainer({
+  required String tex,
+  required double width,
+  required BuildContext context,
+  required String texttitle,
+  required String textcontent,
+  Widget? page,
+  BuildContext? contex,
+}) =>
+    Center(
+      child: InkWell(
+        onTap: () {
+          NavigateTo(contex, page);
+        },
+        child: Container(
+          padding: EdgeInsets.only(right: 16, left: 16, top: 12, bottom: 12),
+          width: width - 16,
+          height: 56,
+          decoration: BoxDecoration(
+            boxShadow: [BoxShadow(blurRadius: 4, color: Color(0xff40000000))],
+            borderRadius: BorderRadius.circular(16),
+            color: Color(0xffffffff),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: (() {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: text(
+                              text: texttitle,
+                              fsize: 19,
+                              talign: TextAlign.right),
+                          content:
+                              text(text: textcontent, talign: TextAlign.right),
+                          actionsAlignment: MainAxisAlignment.end,
+                        );
+                      });
+                }),
+                child: DefoltSvgImage(
+                    image: 'assets/images/vuesax_bulk_info_circle.svg',
+                    width: 32,
+                    hight: 32),
+              ),
+              text(
+                text: tex,
+                fweight: FontWeight.w600,
+                fsize: 16,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+
+Widget defaultFormField2({
+  required TextEditingController controller,
+  required TextInputType type,
+  required FormFieldValidator<String>? validate,
+  ValueChanged<String>? onSubmit,
+  Function? onChanged,
+  required String label,
+  IconData? prefix,
+  IconData? suffix,
+  GestureTapCallback? onTap,
+  bool isPassword = false,
+  VoidCallback? suffixPressed,
+  double Radiu = 8,
+  double fsize = 14,
+  FontWeight fweight = FontWeight.w500,
+  Color? fcolor = const Color(0xff009c7b),
+  String ffamily = "ReadexPro",
+  FontStyle fstyle = FontStyle.normal,
+  required double width,
+}) =>
+    Opacity(
+      opacity: .5,
+      child: TextFormField(
+        textDirection: TextDirection.rtl,
+        textAlign: TextAlign.start,
+        controller: controller,
+        keyboardType: type,
+        onFieldSubmitted: (s) {
+          print(s);
+        },
+        onTap: onTap,
+        onChanged: onSubmit,
+        validator: validate,
+        obscureText: isPassword,
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(
+              color: fcolor,
+              fontWeight: fweight,
+              fontFamily: ffamily,
+              fontStyle: fstyle,
+              fontSize: fsize),
+          suffixIcon: suffix != Null
+              ? IconButton(onPressed: suffixPressed, icon: Icon(suffix))
+              : null,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.all(Radius.circular(Radiu)),
+            borderSide: BorderSide(color: Colors.red),
+          ),
+        ),
+      ),
+    );
+
+Widget defaultTextButton(
+        {required VoidCallback? function,
+        required String text,
+        double fsize = 14,
+        FontWeight fweight = FontWeight.w500,
+        Color? fcolor = const Color(0xff009c7b),
+        String ffamily = "ReadexPro",
+        FontStyle fstyle = FontStyle.normal,
+        TextAlign talign = TextAlign.start}) =>
+    TextButton(
+        onPressed: function,
+        child: Text(
+          text,
+          style: TextStyle(
+              color: fcolor,
+              fontWeight: fweight,
+              fontFamily: ffamily,
+              fontStyle: fstyle,
+              fontSize: fsize),
+          textAlign: talign,
+        ));
+Widget defaultMateriaButton(
+        {double width = double.infinity,
+        Color backgroundColor = Colors.cyan,
+        //bool isUpperCase=true,
+        double height = 40.0,
+        double radius = 0.0,
+        required double fsize,
+        required FontWeight fweight,
+        required Color fcolor,
+        required String text,
+        required VoidCallback? function,
+        String ffamily = "ReadexPro",
+        FontStyle fstyle = FontStyle.normal,
+        TextAlign talign = TextAlign.center}) =>
+    Container(
+      decoration: BoxDecoration(
+          color: backgroundColor, borderRadius: BorderRadius.circular(radius)),
+      height: height,
+      width: width,
+      child: MaterialButton(
+        onPressed: function,
+        child: Text(
+          text,
+          style: TextStyle(
+            color: fcolor,
+            fontSize: fsize,
+            fontWeight: fweight,
+            fontFamily: ffamily,
+            fontStyle: fstyle,
+          ),
+          textAlign: talign,
         ),
       ),
     );
